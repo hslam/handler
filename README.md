@@ -4,9 +4,11 @@
 ## Features
 
 * Gzip
-* Header
 * Proxy
 * Render
+* Header
+* Remote IP
+* Host Name
 
 ## Get started
 
