@@ -2,20 +2,23 @@ package render
 import (
 	"net/http"
 	"encoding/xml"
+	"hslam.com/mgit/Mort/mux-x/header"
 )
 
-func WriteXml(w http.ResponseWriter, r *http.Request, status int, obj interface{}) (err error) {
-	var bytes []byte
-	if r.FormValue("xml") != "" {
-		bytes, err = xml.MarshalIndent(obj, "", "  ")
+func XML(w http.ResponseWriter, r *http.Request, v interface{}, code int) (int,error) {
+	var (
+		body []byte
+		err error
+	)
+	if r.FormValue("pretty") != ""{
+		body, err = xml.MarshalIndent(v, "", "  ")
 	} else {
-		bytes, err = xml.Marshal(obj)
+		body, err = xml.Marshal(v)
 	}
 	if err != nil {
-		return
+		return 0,err
 	}
-	w.Header().Set("Content-Type", "application/xml")
-	w.WriteHeader(status)
-	_, err = w.Write(bytes)
-	return
+	header.SetContentTypeUTF8(w,header.ContentTypeXML)
+	w.WriteHeader(code)
+	return w.Write(body)
 }

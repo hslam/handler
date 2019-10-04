@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"strings"
 	"bytes"
+	"hslam.com/mgit/Mort/mux-x/header"
 )
 
 type GzipWriter struct {
@@ -13,6 +14,7 @@ type GzipWriter struct {
 	gzip bool
 	buf *bytes.Buffer
 }
+
 func NewGzipWriter(w http.ResponseWriter, r *http.Request)*GzipWriter  {
 	g:=&GzipWriter{
 		Writer:gzip.NewWriter(w),
@@ -21,26 +23,27 @@ func NewGzipWriter(w http.ResponseWriter, r *http.Request)*GzipWriter  {
 	g.ready(w,r)
 	return g
 }
+
 func (g *GzipWriter)ready(w http.ResponseWriter, r *http.Request) {
-	if !strings.Contains(r.Header.Get("Accept-Encoding"), "gzip") {
+	if !strings.Contains(header.GetHeader(r,header.AcceptEncoding), header.Gzip) {
 		g.gzip=false
 		return
 	}
-	w.Header().Set("Content-Encoding", "gzip")
-	w.Header().Set("Vary", "Accept-Encoding")
-	w.Header().Del("Content-Length")
+	header.SetHeader(w,header.ContentEncoding,header.Gzip)
+	header.SetHeader(w,header.Vary,header.AcceptEncoding)
+	header.DelHeader(w,header.ContentLength)
 	g.gzip=true
 }
+
 func (g *GzipWriter) Write(b []byte) (int, error) {
 	if g.gzip{
-		if g.w.Header().Get("Content-Type")==""{
-			g.w.Header().Set("Content-Type", http.DetectContentType(b))
-		}
+		header.SetHeader(g.w,header.ContentType,http.DetectContentType(b))
 		return g.Writer.Write(b)
 	}else {
 		return g.w.Write(b)
 	}
 }
+
 func (g *GzipWriter) Close() (error) {
 	if g.gzip{
 		return g.Writer.Close()
@@ -48,9 +51,9 @@ func (g *GzipWriter) Close() (error) {
 	return nil
 }
 
-func WriteGzip(w http.ResponseWriter, r *http.Request, httpStatus int, b []byte) (err error) {
-	w.WriteHeader(httpStatus)
+func Gzip(w http.ResponseWriter, r *http.Request, body []byte,code int) (int, error) {
+	w.WriteHeader(code)
 	gz:=NewGzipWriter(w,r)
-	gz.Write(b)
-	return gz.Close()
+	defer gz.Close()
+	return gz.Write(body)
 }

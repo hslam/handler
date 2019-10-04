@@ -1,21 +1,25 @@
 package render
+
 import (
 	"net/http"
 	"encoding/json"
+	"hslam.com/mgit/Mort/mux-x/header"
 )
 
-func WriteJson(w http.ResponseWriter, r *http.Request, status int, obj interface{}) (err error) {
-	var bytes []byte
-	if r.FormValue("json") != "" ||r.FormValue("pretty") != ""{
-		bytes, err = json.MarshalIndent(obj, "", "  ")
+func JSON(w http.ResponseWriter, r *http.Request, v interface{}, code int) (int,error) {
+	var (
+		body []byte
+		err error
+	)
+	if r.FormValue("pretty") != ""{
+		body, err = json.MarshalIndent(v, "", "  ")
 	} else {
-		bytes, err = json.Marshal(obj)
+		body, err = json.Marshal(v)
 	}
 	if err != nil {
-		return
+		return 0,err
 	}
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(status)
-	_, err = w.Write(bytes)
-	return
+	header.SetContentTypeUTF8(w,header.ContentTypeJSON)
+	w.WriteHeader(code)
+	return w.Write(body)
 }
