@@ -52,8 +52,14 @@ func WriteHeader(w http.ResponseWriter,code int){
 func SetHeaderLength(w http.ResponseWriter, length int){
 	SetHeader(w,ContentLength,strconv.Itoa(length))
 }
-func SetContentTypeUTF8(w http.ResponseWriter, value string){
+func SetContentType(w http.ResponseWriter, value string){
+	SetHeader(w,ContentType,value)
+}
+func SetContentTypeWithUTF8(w http.ResponseWriter, value string){
 	SetHeader(w,ContentType,value+Semicolon+CharsetPrefix+UTF8)
+}
+func SetContentTypeWithCharset(w http.ResponseWriter, value string,charset string){
+	SetHeader(w,ContentType,value+Semicolon+CharsetPrefix+charset)
 }
 func SetCharset(w http.ResponseWriter, charset string){
 	if contentType:=GetResponseHeader(w,ContentType); contentType!="" {

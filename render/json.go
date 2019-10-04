@@ -19,6 +19,6 @@ func JSON(w http.ResponseWriter, r *http.Request, v interface{}, code int) (int,
 	if err != nil {
 		return 0,err
 	}
-	header.SetContentTypeUTF8(w,header.ContentTypeJSON)
+	header.SetContentTypeWithUTF8(w,header.ContentTypeJSON)
 	return Body(w,r,body,code)
 }

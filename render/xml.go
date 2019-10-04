@@ -18,6 +18,6 @@ func XML(w http.ResponseWriter, r *http.Request, v interface{}, code int) (int,e
 	if err != nil {
 		return 0,err
 	}
-	header.SetContentTypeUTF8(w,header.ContentTypeXML)
+	header.SetContentTypeWithUTF8(w,header.ContentTypeXML)
 	return Body(w,r,body,code)
 }
