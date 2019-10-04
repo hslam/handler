@@ -42,6 +42,7 @@ func SetHeader(w http.ResponseWriter,key, value string){
 		w.Header().Add(key, value)
 	}
 }
+
 func DelHeader(w http.ResponseWriter,key string){
 	w.Header().Del(key)
 }
@@ -56,11 +57,15 @@ func SetContentTypeUTF8(w http.ResponseWriter, value string){
 	SetHeader(w,ContentType,value+Semicolon+CharsetPrefix+UTF8)
 }
 func SetCharset(w http.ResponseWriter, charset string){
-	if contentType, ok := w.Header()[ContentType]; ok {
-		w.Header().Set(ContentType, strings.Join(contentType,Semicolon)+CharsetPrefix+charset)
+	if contentType:=GetResponseHeader(w,ContentType); contentType!="" {
+		w.Header().Set(ContentType, contentType+Semicolon+CharsetPrefix+charset)
 	}
 }
 
-func GetHeader(r *http.Request,key string)(value string){
+func GetRequestHeader(r *http.Request,key string)(value string){
 	return r.Header.Get(key)
+}
+
+func GetResponseHeader(w http.ResponseWriter,key string)(value string){
+	return w.Header().Get(key)
 }
