@@ -25,7 +25,7 @@ func NewGzipWriter(w http.ResponseWriter, r *http.Request)*GzipWriter  {
 }
 
 func (g *GzipWriter)ready(w http.ResponseWriter, r *http.Request) {
-	if !strings.Contains(header.GetHeader(r,header.AcceptEncoding), header.Gzip) {
+	if !strings.Contains(header.GetRequestHeader(r,header.AcceptEncoding), header.Gzip) {
 		g.gzip=false
 		return
 	}
