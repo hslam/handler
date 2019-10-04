@@ -2,7 +2,6 @@ package header
 
 import (
 	"net/http"
-	"strings"
 	"strconv"
 )
 const (
