@@ -5,7 +5,7 @@
 
 * Gzip/Deflate
 * Proxy
-* Render
+* [Render](https://hslam.com/mgit/Mort/handler/src/master/render "Render").
 * Header
 * Remote IP
 * Host Name
