@@ -3,12 +3,12 @@
 
 ## Features
 
-* Gzip/Deflate
-* Proxy
-* [Render](https://hslam.com/mgit/Mort/handler/src/master/render "Render").
-* Header
-* Remote IP
-* Host Name
+* [Gzip/Deflate](https://hslam.com/mgit/Mort/handler/src/master/compress "compress")
+* [Proxy](https://hslam.com/mgit/Mort/handler/src/master/proxy "proxy")
+* [Render](https://hslam.com/mgit/Mort/handler/src/master/render "render")
+* [Header](https://hslam.com/mgit/Mort/handler/src/master/header "header")
+* [Remote IP](https://hslam.com/mgit/Mort/handler/src/master/remote "remote")
+* [Referer Host](https://hslam.com/mgit/Mort/handler/src/master/referer "referer")
 
 ## Get started
 
