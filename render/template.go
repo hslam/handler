@@ -58,7 +58,7 @@ func (t *Tmpl)Execute(w http.ResponseWriter, r *http.Request,data interface{}, c
 	if err!=nil{
 		return 0,err
 	}
-	header.SetContentTypeWithUTF8(w,header.ContentTypeHTML)
+	header.SetContentTypeWithCharset(w,header.ContentTypeHTML,t.render.charset)
 	return t.render.Body(w,r,[]byte(html),code)
 }
 
@@ -107,7 +107,7 @@ func (t *Tmpl)ExecuteTemplate(w http.ResponseWriter, r *http.Request,name string
 	if err!=nil{
 		return 0,err
 	}
-	header.SetContentTypeWithUTF8(w,header.ContentTypeHTML)
+	header.SetContentTypeWithCharset(w,header.ContentTypeHTML,t.render.charset)
 	return t.render.Body(w,r,[]byte(html),code)
 }
 func (t *Tmpl)executeTemplate(name string,data interface{}) (string,error) {

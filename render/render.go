@@ -16,6 +16,7 @@ func init() {
 }
 type Render struct {
 	mut sync.RWMutex
+	charset string
 	gzip bool
 	deflate bool
 	compressWriter *compress.CompressWriter
@@ -23,7 +24,7 @@ type Render struct {
 }
 
 func NewRender() *Render {
-	render:=&Render{}
+	render:=&Render{charset:header.UTF8}
 	render.tmpl=NewTmplWithRender(render)
 	return render
 }
@@ -37,6 +38,12 @@ func (render *Render) DeflateAll()*Render{
 	render.mut.Lock()
 	defer render.mut.Unlock()
 	render.deflate=true
+	return render
+}
+func (render *Render) Charset(charset string)*Render{
+	render.mut.Lock()
+	defer render.mut.Unlock()
+	render.charset=charset
 	return render
 }
 func Body(w http.ResponseWriter, r *http.Request,body []byte, code int)(int,error)  {
@@ -104,7 +111,7 @@ func (render *Render)JSON(w http.ResponseWriter, r *http.Request, v interface{},
 	if err != nil {
 		return 0,err
 	}
-	header.SetContentTypeWithUTF8(w,header.ContentTypeJSON)
+	header.SetContentTypeWithCharset(w,header.ContentTypeJSON,render.charset)
 	return render.write(w,r,body,code)
 }
 func XML(w http.ResponseWriter, r *http.Request, v interface{}, code int) (int,error) {
@@ -123,7 +130,7 @@ func (render *Render)XML(w http.ResponseWriter, r *http.Request, v interface{}, 
 	if err != nil {
 		return 0,err
 	}
-	header.SetContentTypeWithUTF8(w,header.ContentTypeXML)
+	header.SetContentTypeWithCharset(w,header.ContentTypeXML,render.charset)
 	return render.write(w,r,body,code)
 }
 func Redirect(w http.ResponseWriter, r *http.Request, url string) {
@@ -137,7 +144,7 @@ func Text(w http.ResponseWriter, r *http.Request,text string, code int)(int,erro
 }
 
 func (render *Render)Text(w http.ResponseWriter, r *http.Request,text string, code int)(int,error)  {
-	header.SetContentTypeWithUTF8(w,header.ContentTypeText)
+	header.SetContentTypeWithCharset(w,header.ContentTypeText,render.charset)
 	return render.write(w,r,[]byte(text),code)
 }
 

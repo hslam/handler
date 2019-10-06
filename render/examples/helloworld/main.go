@@ -8,8 +8,8 @@ import (
 func main() {
 	r:=render.NewRender()
 	router := mux.New()
-	router.HandleFunc("/text", func(w http.ResponseWriter, req *http.Request) {
-		r.Text(w,req,"Hello wolrd",http.StatusOK)
+	router.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
+		r.Text(w,req,"Hello world",http.StatusOK)
 	}).All()
 	router.Once()//before listening
 	log.Fatal(http.ListenAndServe(":8080", router))

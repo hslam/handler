@@ -19,10 +19,10 @@ func SetCharset(w http.ResponseWriter, charset string){
 	}
 }
 
-func SetContentTypeWithUTF8(w http.ResponseWriter, value string){
-	SetContentTypeWithCharset(w,value,UTF8)
-}
-
 func SetContentTypeWithCharset(w http.ResponseWriter, value string,charset string){
-	SetHeader(w,ContentType,value+Semicolon+CharsetPrefix+charset)
+	if charset!=""{
+		SetHeader(w,ContentType,value+Semicolon+CharsetPrefix+charset)
+	}else {
+		SetHeader(w,ContentType,value)
+	}
 }
