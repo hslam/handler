@@ -14,11 +14,11 @@
 
 ### Install
 ```
-go get hslam.com/mgit/Mort/mux-x
+go get hslam.com/mgit/Mort/handler
 ```
 ### Import
 ```
-import "hslam.com/mgit/Mort/mux-x"
+import "hslam.com/mgit/Mort/handler"
 ```
 
 ### Licence
