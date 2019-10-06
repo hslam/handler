@@ -62,7 +62,7 @@ import (
 )
 func main() {
 	ren:=render.NewRender()
-	ren.GzipAll().DeflateAll()
+	ren.GzipAll().DeflateAll().Charset("utf-8")
 	router := mux.New()
 	router.HandleFunc("/compress", func(w http.ResponseWriter, r *http.Request) {
 		ren.Body(w,r,[]byte("compress"),http.StatusOK)
@@ -118,7 +118,7 @@ type Student struct {
 }
 func main() {
 	r:=render.NewRender()
-	r.GzipAll().DeflateAll()
+	r.GzipAll().DeflateAll().Charset("utf-8")
 	router := mux.New()
 	router.HandleFunc("/text", func(w http.ResponseWriter, req *http.Request) {
 		r.Text(w,req,"Hello world",http.StatusOK)
@@ -202,7 +202,7 @@ func main() {
 	r.Parse(studentTemplate)
 	r.ParseTemplate("1",studentTemplateOne)
 	r.ParseTemplate("2",studentTemplateTwo)
-	r.GzipAll().DeflateAll()
+	r.GzipAll().DeflateAll().Charset("utf-8")
 	router := mux.New()
 	router.HandleFunc("/template", func(w http.ResponseWriter, req *http.Request) {
 		r.Execute(w,req,Student{"Mort Huang",18,"Earth"},http.StatusOK)

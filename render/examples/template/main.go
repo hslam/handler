@@ -38,7 +38,7 @@ func main() {
 	r.Parse(studentTemplate)
 	r.ParseTemplate("1",studentTemplateOne)
 	r.ParseTemplate("2",studentTemplateTwo)
-	r.GzipAll().DeflateAll()
+	r.GzipAll().DeflateAll().Charset("utf-8")
 	router := mux.New()
 	router.HandleFunc("/template", func(w http.ResponseWriter, req *http.Request) {
 		r.Execute(w,req,Student{"Mort Huang",18,"Earth"},http.StatusOK)

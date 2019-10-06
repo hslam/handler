@@ -12,7 +12,7 @@ type Student struct {
 }
 func main() {
 	r:=render.NewRender()
-	r.GzipAll().DeflateAll()
+	r.GzipAll().DeflateAll().Charset("utf-8")
 	router := mux.New()
 	router.HandleFunc("/text", func(w http.ResponseWriter, req *http.Request) {
 		r.Text(w,req,"Hello world",http.StatusOK)

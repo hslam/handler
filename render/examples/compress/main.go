@@ -7,7 +7,7 @@ import (
 )
 func main() {
 	ren:=render.NewRender()
-	ren.GzipAll().DeflateAll()
+	ren.GzipAll().DeflateAll().Charset("utf-8")
 	router := mux.New()
 	router.HandleFunc("/compress", func(w http.ResponseWriter, r *http.Request) {
 		ren.Body(w,r,[]byte("compress"),http.StatusOK)

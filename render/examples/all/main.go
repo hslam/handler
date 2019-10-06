@@ -35,10 +35,10 @@ var studentTemplateTwo = `
 `
 func main() {
 	r:=render.NewRender()
+	r.GzipAll().DeflateAll().Charset("utf-8")
 	r.Parse(studentTemplate)
 	r.ParseTemplate("1",studentTemplateOne)
 	r.ParseTemplate("2",studentTemplateTwo)
-	r.GzipAll().DeflateAll()
 	router := mux.New()
 	router.HandleFunc("/compress", func(w http.ResponseWriter, req *http.Request) {
 		r.Body(w,req,[]byte("compress"),http.StatusOK)
