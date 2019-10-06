@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strings"
 	"bytes"
-	"hslam.com/mgit/Mort/mux-x/header"
+	"hslam.com/mgit/Mort/handler/header"
 )
 
 type GzipWriter struct {
@@ -25,11 +25,11 @@ func NewGzipWriter(w http.ResponseWriter, r *http.Request)*GzipWriter  {
 }
 
 func (g *GzipWriter)ready(w http.ResponseWriter, r *http.Request) {
-	if !strings.Contains(header.GetRequestHeader(r,header.AcceptEncoding), header.Gzip) {
+	if !strings.Contains(header.GetRequestHeader(r,header.AcceptEncoding), header.GZIP) {
 		g.gzip=false
 		return
 	}
-	header.SetHeader(w,header.ContentEncoding,header.Gzip)
+	header.SetHeader(w,header.ContentEncoding,header.GZIP)
 	header.SetHeader(w,header.Vary,header.AcceptEncoding)
 	header.DelHeader(w,header.ContentLength)
 	g.gzip=true

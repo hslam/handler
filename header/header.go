@@ -2,7 +2,6 @@ package header
 
 import (
 	"net/http"
-	"strconv"
 )
 const (
 	ContentEncoding		= "Content-Encoding"
@@ -17,7 +16,7 @@ const (
 	Bytes				= "bytes"
 
 	AcceptEncoding		= "Accept-Encoding"
-	Gzip 				= "gzip"
+	GZIP 				= "gzip"
 
 	Vary    			= "Vary"
 	Charset 			= "charset"
@@ -33,6 +32,14 @@ const (
 	ContentTypeXML     	= "text/xml"
 	ContentTypeHTML    	= "text/html"
 	ContentTypeText    	= "text/plain"
+
+
+	AccessControlAllowOrigin 		= "Access-Control-Allow-Origin"
+	AccessControlAllowCredentials	= "Access-Control-Allow-Credentials"
+	AccessControlMaxAge				= "Access-Control-Max-Age"
+	AccessControlAllowMethods		= "Access-Control-Allow-Methods"
+	AccessControlAllowHeaders		= "Access-Control-Allow-Headers"
+
 )
 func SetHeader(w http.ResponseWriter,key, value string){
 	if _, ok := w.Header()[key]; ok {
@@ -48,23 +55,6 @@ func DelHeader(w http.ResponseWriter,key string){
 
 func WriteHeader(w http.ResponseWriter,code int){
 	w.WriteHeader(code)
-}
-func SetHeaderLength(w http.ResponseWriter, length int){
-	SetHeader(w,ContentLength,strconv.Itoa(length))
-}
-func SetContentType(w http.ResponseWriter, value string){
-	SetHeader(w,ContentType,value)
-}
-func SetContentTypeWithUTF8(w http.ResponseWriter, value string){
-	SetHeader(w,ContentType,value+Semicolon+CharsetPrefix+UTF8)
-}
-func SetContentTypeWithCharset(w http.ResponseWriter, value string,charset string){
-	SetHeader(w,ContentType,value+Semicolon+CharsetPrefix+charset)
-}
-func SetCharset(w http.ResponseWriter, charset string){
-	if contentType:=GetResponseHeader(w,ContentType); contentType!="" {
-		w.Header().Set(ContentType, contentType+Semicolon+CharsetPrefix+charset)
-	}
 }
 
 func GetRequestHeader(r *http.Request,key string)(value string){

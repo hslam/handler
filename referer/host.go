@@ -1,10 +1,10 @@
-package host
+package referer
 
 import (
 	"strings"
 	"net/http"
 )
-func Host(req *http.Request) (addr string) {
+func RefererHost(req *http.Request) (addr string) {
 	return ParseHostName(req.Referer())
 }
 func ParseHostName(url string) string {
