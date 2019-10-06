@@ -6,6 +6,7 @@ import (
 	"hslam.com/mgit/Mort/handler/header"
 	"encoding/xml"
 	"hslam.com/mgit/Mort/handler/compress"
+	"sync"
 )
 
 var DefalutRender  *Render
@@ -14,6 +15,7 @@ func init() {
 	DefalutRender=NewRender()
 }
 type Render struct {
+	mut sync.RWMutex
 	gzip bool
 	deflate bool
 	compressWriter *compress.CompressWriter
@@ -26,10 +28,14 @@ func NewRender() *Render {
 	return render
 }
 func (render *Render)GzipAll()*Render{
+	render.mut.Lock()
+	defer render.mut.Unlock()
 	render.gzip=true
 	return render
 }
 func (render *Render) DeflateAll()*Render{
+	render.mut.Lock()
+	defer render.mut.Unlock()
 	render.deflate=true
 	return render
 }
@@ -37,6 +43,8 @@ func Body(w http.ResponseWriter, r *http.Request,body []byte, code int)(int,erro
 	return DefalutRender.Body(w,r,body,code)
 }
 func (render *Render) write(w http.ResponseWriter, r *http.Request,body []byte, code int)(int,error)  {
+	render.mut.RLock()
+	defer render.mut.RUnlock()
 	header.SetContentLength(w,len(body))
 	if contentType:= header.GetResponseHeader(w,header.ContentType); contentType=="" {
 		header.SetHeader(w,header.ContentType,http.DetectContentType(body))
