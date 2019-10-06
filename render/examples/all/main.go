@@ -44,7 +44,7 @@ func main() {
 		r.Body(w,req,[]byte("compress"),http.StatusOK)
 	}).GET().POST().HEAD()
 	router.HandleFunc("/text", func(w http.ResponseWriter, req *http.Request) {
-		r.Text(w,req,"Hello wolrd",http.StatusOK)
+		r.Text(w,req,"Hello world",http.StatusOK)
 	}).All()
 	router.HandleFunc("/raw", func(w http.ResponseWriter, req *http.Request) {
 		r.Body(w,req,[]byte("raw data"),http.StatusOK)
