@@ -26,6 +26,6 @@ This package is licenced under a MIT licence (Copyright (c) 2019 Mort Huang)
 
 
 ### Authors
-mux-x was written by Mort Huang.
+handler was written by Mort Huang.
 
 
