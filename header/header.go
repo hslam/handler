@@ -17,6 +17,7 @@ const (
 
 	AcceptEncoding		= "Accept-Encoding"
 	GZIP 				= "gzip"
+	DEFLATE				= "deflate"
 
 	Vary    			= "Vary"
 	Charset 			= "charset"

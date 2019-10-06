@@ -3,7 +3,7 @@
 
 ## Features
 
-* Gzip
+* Gzip/Deflate
 * Proxy
 * Render
 * Header

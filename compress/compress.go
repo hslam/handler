@@ -2,7 +2,6 @@ package compress
 
 import (
 	"net/http"
-	"strings"
 	"bytes"
 	"sync"
 	"hslam.com/mgit/Mort/handler/header"
@@ -60,13 +59,11 @@ func newCompressor(useBuffer bool)*Compressor  {
 }
 
 func (c *Compressor)ready(w http.ResponseWriter, r *http.Request) {
-	if !strings.Contains(header.GetRequestHeader(r,header.AcceptEncoding), c.compressType) {
+	if !header.CheckAcceptEncoding(r,c.compressType) {
 		c.compress=false
 		return
 	}
-	header.SetHeader(w,header.ContentEncoding,c.compressType)
-	header.SetHeader(w,header.Vary,header.AcceptEncoding)
-	header.DelHeader(w,header.ContentLength)
+	header.SetContentEncoding(w,c.compressType)
 	c.compress=true
 }
 
