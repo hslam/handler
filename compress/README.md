@@ -10,11 +10,11 @@
 
 ### Install
 ```
-go get hslam.com/mgit/Mort/handler
+go get hslam.com/git/x/handler
 ```
 ### Import
 ```
-import "hslam.com/mgit/Mort/handler"
+import "hslam.com/git/x/handler"
 ```
 ### Usage
 #### Example
@@ -23,8 +23,8 @@ package main
 import (
 	"log"
 	"net/http"
-	"hslam.com/mgit/Mort/mux"
-	"hslam.com/mgit/Mort/handler/compress"
+	"hslam.com/git/x/mux"
+	"hslam.com/git/x/handler/compress"
 )
 func main() {
 	router := mux.New()

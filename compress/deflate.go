@@ -3,7 +3,7 @@ package compress
 import (
 	"compress/zlib"
 	"net/http"
-	"hslam.com/mgit/Mort/handler/header"
+	"hslam.com/git/x/handler/header"
 )
 
 func NewDeflateWriter(w http.ResponseWriter, r *http.Request)*Compressor  {

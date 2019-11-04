@@ -2,8 +2,8 @@ package main
 import (
 	"log"
 	"net/http"
-	"hslam.com/mgit/Mort/mux"
-	"hslam.com/mgit/Mort/handler/render"
+	"hslam.com/git/x/mux"
+	"hslam.com/git/x/handler/render"
 )
 func main() {
 	r:=render.NewRender()

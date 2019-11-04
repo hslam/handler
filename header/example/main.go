@@ -2,8 +2,8 @@ package main
 import (
 	"log"
 	"net/http"
-	"hslam.com/mgit/Mort/mux"
-	"hslam.com/mgit/Mort/handler/header"
+	"hslam.com/git/x/mux"
+	"hslam.com/git/x/handler/header"
 )
 func main() {
 	router := mux.New()
