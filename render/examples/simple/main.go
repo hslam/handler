@@ -2,7 +2,7 @@ package main
 import (
 	"log"
 	"net/http"
-	"hslam.com/git/x/mux"
+	"hslam.com/git/x/rum"
 	"hslam.com/git/x/handler/render"
 )
 type Student struct {
@@ -13,7 +13,7 @@ type Student struct {
 func main() {
 	r:=render.NewRender()
 	r.GzipAll().DeflateAll().Charset("utf-8")
-	router := mux.New()
+	router := rum.New()
 	router.HandleFunc("/text", func(w http.ResponseWriter, req *http.Request) {
 		r.Text(w,req,"Hello world",http.StatusOK)
 	}).All()

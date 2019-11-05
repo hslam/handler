@@ -2,11 +2,11 @@ package main
 import (
 	"log"
 	"net/http"
-	"hslam.com/git/x/mux"
+	"hslam.com/git/x/rum"
 	"hslam.com/git/x/handler/compress"
 )
 func main() {
-	router := mux.New()
+	router := rum.New()
 	router.HandleFunc("/gzip", func(w http.ResponseWriter, r *http.Request) {
 		compress.Gzip(w,r,[]byte("gzip"),http.StatusOK)
 	}).GET().POST().HEAD()
