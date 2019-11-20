@@ -27,12 +27,12 @@ import (
 	"strings"
 )
 func main() {
-	router := mux.New()
-	router.HandleFunc("/connect", func(w http.ResponseWriter, r *http.Request) {
+	m := mux.New()
+	m.HandleFunc("/connect", func(w http.ResponseWriter, r *http.Request) {
 		conn:=connect.GetConn(w,r)
 		ServeConn(conn)
 	}).CONNECT()
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":8080", m))
 }
 //
 func ServeConn(conn net.Conn) {

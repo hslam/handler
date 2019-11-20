@@ -23,14 +23,14 @@ import (
 	"hslam.com/git/x/handler/header"
 )
 func main() {
-	router := mux.New()
-	router.Use(func(w http.ResponseWriter, r *http.Request) {
+	m := mux.New()
+	m.Use(func(w http.ResponseWriter, r *http.Request) {
 		header.SetHeader(w,header.AccessControlAllowOrigin, "*")
 	})
-	router.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
+	m.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Hello World"))
 	}).All()
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":8080", m))
 }
 ```
 curl -I http://localhost:8080/hello

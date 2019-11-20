@@ -6,12 +6,12 @@ import (
 	"hslam.com/git/x/handler/compress"
 )
 func main() {
-	router := mux.New()
-	router.HandleFunc("/gzip", func(w http.ResponseWriter, r *http.Request) {
+	m := mux.New()
+	m.HandleFunc("/gzip", func(w http.ResponseWriter, r *http.Request) {
 		compress.Gzip(w,r,[]byte("gzip"),http.StatusOK)
 	}).GET().POST().HEAD()
-	router.HandleFunc("/deflate", func(w http.ResponseWriter, r *http.Request) {
+	m.HandleFunc("/deflate", func(w http.ResponseWriter, r *http.Request) {
 		compress.Deflate(w,r,[]byte("deflate"),http.StatusOK)
 	}).GET().POST().HEAD()
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":8080", m))
 }

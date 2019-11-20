@@ -7,9 +7,9 @@ import (
 )
 func main() {
 	r:=render.NewRender()
-	router := mux.New()
-	router.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
+	m := mux.New()
+	m.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
 		r.Text(w,req,"Hello world",http.StatusOK)
 	}).All()
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":8080", m))
 }

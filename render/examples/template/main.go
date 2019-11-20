@@ -39,16 +39,16 @@ func main() {
 	r.ParseTemplate("1",studentTemplateOne)
 	r.ParseTemplate("2",studentTemplateTwo)
 	r.GzipAll().DeflateAll().Charset("utf-8")
-	router := mux.New()
-	router.HandleFunc("/template", func(w http.ResponseWriter, req *http.Request) {
+	m := mux.New()
+	m.HandleFunc("/template", func(w http.ResponseWriter, req *http.Request) {
 		r.Execute(w,req,Student{"Mort Huang",18,"Earth"},http.StatusOK)
 	}).All()
-	router.HandleFunc("/template/:name", func(w http.ResponseWriter, req *http.Request) {
-		params:=router.Params(req)
+	m.HandleFunc("/template/:name", func(w http.ResponseWriter, req *http.Request) {
+		params:=m.Params(req)
 		_,err:=r.ExecuteTemplate(w,req,params["name"],Student{"Mort Huang",18,"Earth"},http.StatusOK)
 		if err!=nil{
 			r.Text(w,req,fmt.Sprintf("template/%s is not exsited",params["name"]),http.StatusOK)
 		}
 	}).All()
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":8080", m))
 }
