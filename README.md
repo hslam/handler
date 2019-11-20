@@ -1,5 +1,5 @@
 # handler
-## [rum](https://hslam.com/git/x/rum "rum") middleware/handler.
+## [mux](https://hslam.com/git/x/mux "mux") middleware/handler.
 
 ## Features
 * [Render](https://hslam.com/git/x/handler/src/master/render "render")

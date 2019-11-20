@@ -1,5 +1,5 @@
 # render
-## rum middleware to enable render support.
+## mux middleware to enable render support.
 
 ## Features
 
@@ -32,12 +32,12 @@ package main
 import (
 	"log"
 	"net/http"
-	"hslam.com/git/x/rum"
+	"hslam.com/git/x/mux"
 	"hslam.com/git/x/handler/render"
 )
 func main() {
 	r:=render.NewRender()
-	router := rum.New()
+	router := mux.New()
 	router.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
 		r.Text(w,req,"Hello world",http.StatusOK)
 	}).All()
@@ -57,13 +57,13 @@ package main
 import (
 	"log"
 	"net/http"
-	"hslam.com/git/x/rum"
+	"hslam.com/git/x/mux"
 	"hslam.com/git/x/handler/render"
 )
 func main() {
 	r:=render.NewRender()
 	r.GzipAll().DeflateAll().Charset("utf-8")
-	router := rum.New()
+	router := mux.New()
 	router.HandleFunc("/compress", func(w http.ResponseWriter, req *http.Request) {
 		r.Body(w,req,[]byte("compress"),http.StatusOK)
 	}).GET().POST().HEAD()
@@ -108,7 +108,7 @@ package main
 import (
 	"log"
 	"net/http"
-	"hslam.com/git/x/rum"
+	"hslam.com/git/x/mux"
 	"hslam.com/git/x/handler/render"
 )
 type Student struct {
@@ -119,7 +119,7 @@ type Student struct {
 func main() {
 	r:=render.NewRender()
 	r.GzipAll().DeflateAll().Charset("utf-8")
-	router := rum.New()
+	router := mux.New()
 	router.HandleFunc("/text", func(w http.ResponseWriter, req *http.Request) {
 		r.Text(w,req,"Hello world",http.StatusOK)
 	}).All()
@@ -166,7 +166,7 @@ package main
 import (
 	"log"
 	"net/http"
-	"hslam.com/git/x/rum"
+	"hslam.com/git/x/mux"
 	"hslam.com/git/x/handler/render"
 	"fmt"
 )
@@ -203,7 +203,7 @@ func main() {
 	r.ParseTemplate("1",studentTemplateOne)
 	r.ParseTemplate("2",studentTemplateTwo)
 	r.GzipAll().DeflateAll().Charset("utf-8")
-	router := rum.New()
+	router := mux.New()
 	router.HandleFunc("/template", func(w http.ResponseWriter, req *http.Request) {
 		r.Execute(w,req,Student{"Mort Huang",18,"Earth"},http.StatusOK)
 	}).All()

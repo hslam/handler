@@ -2,11 +2,11 @@ package main
 import (
 	"log"
 	"net/http"
-	"hslam.com/git/x/rum"
+	"hslam.com/git/x/mux"
 	"hslam.com/git/x/handler/header"
 )
 func main() {
-	router := rum.New()
+	router := mux.New()
 	router.Use(func(w http.ResponseWriter, r *http.Request) {
 		header.SetHeader(w,header.AccessControlAllowOrigin, "*")
 	})

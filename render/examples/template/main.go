@@ -2,7 +2,7 @@ package main
 import (
 	"log"
 	"net/http"
-	"hslam.com/git/x/rum"
+	"hslam.com/git/x/mux"
 	"hslam.com/git/x/handler/render"
 	"fmt"
 )
@@ -39,7 +39,7 @@ func main() {
 	r.ParseTemplate("1",studentTemplateOne)
 	r.ParseTemplate("2",studentTemplateTwo)
 	r.GzipAll().DeflateAll().Charset("utf-8")
-	router := rum.New()
+	router := mux.New()
 	router.HandleFunc("/template", func(w http.ResponseWriter, req *http.Request) {
 		r.Execute(w,req,Student{"Mort Huang",18,"Earth"},http.StatusOK)
 	}).All()

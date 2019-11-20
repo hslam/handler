@@ -2,7 +2,7 @@ package main
 import (
 	"log"
 	"net/http"
-	"hslam.com/git/x/rum"
+	"hslam.com/git/x/mux"
 	"hslam.com/git/x/handler/render"
 	"fmt"
 )
@@ -39,7 +39,7 @@ func main() {
 	r.Parse(studentTemplate)
 	r.ParseTemplate("1",studentTemplateOne)
 	r.ParseTemplate("2",studentTemplateTwo)
-	router := rum.New()
+	router := mux.New()
 	router.HandleFunc("/compress", func(w http.ResponseWriter, req *http.Request) {
 		r.Body(w,req,[]byte("compress"),http.StatusOK)
 	}).GET().POST().HEAD()
