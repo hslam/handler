@@ -61,6 +61,7 @@ import (
 func main() {
 	//conn,err:=connect.DialHTTP("http://localhost:8080/connect")
 	conn,err:=connect.DialHTTPPath("localhost:8080","/connect")
+	defer conn.Close()
 	if err!=nil{
 		panic(err)
 	}
