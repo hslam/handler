@@ -5,6 +5,7 @@
 * [Render](https://hslam.com/git/x/handler/src/master/render "render")
 * [Gzip/Deflate](https://hslam.com/git/x/handler/src/master/compress "compress")
 * [Proxy](https://hslam.com/git/x/handler/src/master/proxy "proxy")
+* [Conncect](https://hslam.com/git/x/handler/src/master/connect "connect")
 * [Header](https://hslam.com/git/x/handler/src/master/header "header")
 * [Remote IP](https://hslam.com/git/x/handler/src/master/remote "remote")
 * [Referer Host](https://hslam.com/git/x/handler/src/master/referer "referer")
