@@ -26,6 +26,5 @@ func main() {
 	router.HandleFunc("/xml", func(w http.ResponseWriter, req *http.Request) {
 		r.XML(w,req,Student{"Mort Huang",18,"Earth"},http.StatusOK)
 	}).All()
-	router.Once()//before listening
 	log.Fatal(http.ListenAndServe(":8080", router))
 }

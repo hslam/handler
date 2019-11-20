@@ -50,6 +50,5 @@ func main() {
 			r.Text(w,req,fmt.Sprintf("template/%s is not exsited",params["name"]),http.StatusOK)
 		}
 	}).All()
-	router.Once()//before listening
 	log.Fatal(http.ListenAndServe(":8080", router))
 }

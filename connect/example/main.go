@@ -15,7 +15,6 @@ func main() {
 		conn:=connect.GetConn(w,r)
 		ServeConn(conn)
 	}).CONNECT()
-	router.Once()//before listening
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 //

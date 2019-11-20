@@ -30,7 +30,6 @@ func main() {
 	router.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Hello World"))
 	}).All()
-	router.Once()//before listening
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 ```

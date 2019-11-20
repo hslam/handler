@@ -41,7 +41,6 @@ func main() {
 	router.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
 		r.Text(w,req,"Hello world",http.StatusOK)
 	}).All()
-	router.Once()//before listening
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 ```
@@ -67,7 +66,6 @@ func main() {
 	router.HandleFunc("/compress", func(w http.ResponseWriter, req *http.Request) {
 		r.Body(w,req,[]byte("compress"),http.StatusOK)
 	}).GET().POST().HEAD()
-	router.Once()//before listening
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 ```
@@ -132,7 +130,6 @@ func main() {
 	router.HandleFunc("/xml", func(w http.ResponseWriter, req *http.Request) {
 		r.XML(w,req,Student{"Mort Huang",18,"Earth"},http.StatusOK)
 	}).All()
-	router.Once()//before listening
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 ```
@@ -214,7 +211,6 @@ func main() {
 			r.Text(w,req,fmt.Sprintf("template/%s is not exsited",params["name"]),http.StatusOK)
 		}
 	}).All()
-	router.Once()//before listening
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 ```

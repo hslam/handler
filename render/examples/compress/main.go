@@ -12,6 +12,5 @@ func main() {
 	router.HandleFunc("/compress", func(w http.ResponseWriter, req *http.Request) {
 		r.Body(w,req,[]byte("compress"),http.StatusOK)
 	}).GET().POST().HEAD()
-	router.Once()//before listening
 	log.Fatal(http.ListenAndServe(":8080", router))
 }

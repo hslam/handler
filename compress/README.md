@@ -34,7 +34,6 @@ func main() {
 	router.HandleFunc("/deflate", func(w http.ResponseWriter, r *http.Request) {
 		compress.Deflate(w,r,[]byte("deflate"),http.StatusOK)
 	}).GET().POST().HEAD()
-	router.Once()//before listening
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 ```
