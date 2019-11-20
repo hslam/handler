@@ -75,6 +75,13 @@ func main() {
 }
 ```
 
+**Output**
+```
+Hello mux
+Hello mux
+Hello mux
+...
+```
 ### Licence
 This package is licenced under a MIT licence (Copyright (c) 2019 Mort Huang)
 
