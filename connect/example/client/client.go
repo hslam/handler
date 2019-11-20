@@ -12,7 +12,7 @@ func main() {
 		panic(err)
 	}
 	reader := bufio.NewReader(conn)
-	for{
+	for i:=0;i<3;i++{
 		conn.Write([]byte("Hello mux\n"))
 		message,err := reader.ReadString('\n')
 		if err!=nil || err == io.EOF {

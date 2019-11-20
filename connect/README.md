@@ -24,6 +24,7 @@ import (
 	"net"
 	"bufio"
 	"io"
+	"strings"
 )
 func main() {
 	router := mux.New()
@@ -34,7 +35,7 @@ func main() {
 	router.Once()//before listening
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
-//Echo
+//
 func ServeConn(conn net.Conn) {
 	reader := bufio.NewReader(conn)
 	for{
@@ -42,7 +43,7 @@ func ServeConn(conn net.Conn) {
 		if err!=nil || err == io.EOF {
 			break
 		}
-		conn.Write([]byte(message))
+		conn.Write([]byte(strings.ToUpper(string(message))))
 	}
 }
 ```
@@ -63,7 +64,7 @@ func main() {
 		panic(err)
 	}
 	reader := bufio.NewReader(conn)
-	for{
+	for i:=0;i<3;i++{
 		conn.Write([]byte("Hello mux\n"))
 		message,err := reader.ReadString('\n')
 		if err!=nil || err == io.EOF {
@@ -77,10 +78,9 @@ func main() {
 
 **Output**
 ```
-Hello mux
-Hello mux
-Hello mux
-...
+HELLO MUX
+HELLO MUX
+HELLO MUX
 ```
 ### Licence
 This package is licenced under a MIT licence (Copyright (c) 2019 Mort Huang)

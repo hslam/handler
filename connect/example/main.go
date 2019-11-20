@@ -7,6 +7,7 @@ import (
 	"net"
 	"bufio"
 	"io"
+	"strings"
 )
 func main() {
 	router := mux.New()
@@ -17,7 +18,7 @@ func main() {
 	router.Once()//before listening
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
-//Echo
+//
 func ServeConn(conn net.Conn) {
 	reader := bufio.NewReader(conn)
 	for{
@@ -25,6 +26,6 @@ func ServeConn(conn net.Conn) {
 		if err!=nil || err == io.EOF {
 			break
 		}
-		conn.Write([]byte(message))
+		conn.Write([]byte(strings.ToUpper(string(message))))
 	}
 }
