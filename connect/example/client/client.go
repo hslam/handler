@@ -7,6 +7,7 @@ import (
 	"time"
 )
 func main() {
+	//conn,err:=connect.DialHTTP("http://localhost:8080/connect")
 	conn,err:=connect.DialHTTPPath("localhost:8080","/connect")
 	if err!=nil{
 		panic(err)
