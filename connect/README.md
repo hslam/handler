@@ -1,5 +1,5 @@
 # connect
-Switch from HTTP to TCP connection using CONNECT HTTP method.
+Switch protocol from HTTP to TCP connection using CONNECT HTTP method.
 ## Get started
 
 ### Install
