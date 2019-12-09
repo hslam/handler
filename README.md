@@ -22,10 +22,10 @@ import "hslam.com/git/x/handler"
 ```
 
 ### Licence
-This package is licenced under a MIT licence (Copyright (c) 2019 Mort Huang)
+This package is licenced under a MIT licence (Copyright (c) 2019 Meng Huang)
 
 
 ### Authors
-handler was written by Mort Huang.
+handler was written by Meng Huang.
 
 

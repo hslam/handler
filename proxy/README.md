@@ -42,10 +42,10 @@ hello from 8081
 ```
 
 ### Licence
-This package is licenced under a MIT licence (Copyright (c) 2019 Mort Huang)
+This package is licenced under a MIT licence (Copyright (c) 2019 Meng Huang)
 
 
 ### Authors
-proxy was written by Mort Huang.
+proxy was written by Meng Huang.
 
 

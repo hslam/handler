@@ -125,10 +125,10 @@ func main() {
 		r.Body(w,req,[]byte("raw data"),http.StatusOK)
 	}).All()
 	m.HandleFunc("/json", func(w http.ResponseWriter, req *http.Request) {
-		r.JSON(w,req,Student{"Mort Huang",18,"Earth"},http.StatusOK)
+		r.JSON(w,req,Student{"Meng Huang",18,"Earth"},http.StatusOK)
 	}).All()
 	m.HandleFunc("/xml", func(w http.ResponseWriter, req *http.Request) {
-		r.XML(w,req,Student{"Mort Huang",18,"Earth"},http.StatusOK)
+		r.XML(w,req,Student{"Meng Huang",18,"Earth"},http.StatusOK)
 	}).All()
 	log.Fatal(http.ListenAndServe(":8080", m))
 }
@@ -142,7 +142,7 @@ raw data
 curl -H "Accept-Encoding: gzip,deflate" --compressed http://localhost:8080/json?pretty=y
 ```
 {
-  "Name": "Mort Huang",
+  "Name": "Meng Huang",
   "Age": 18,
   "Address": "Earth"
 }
@@ -151,7 +151,7 @@ curl -H "Accept-Encoding: gzip,deflate" --compressed http://localhost:8080/json?
 curl -H "Accept-Encoding: gzip,deflate" --compressed http://localhost:8080/xml?pretty=y
 ```
 <Student>
-  <Name>Mort Huang</Name>
+  <Name>Meng Huang</Name>
   <Age>18</Age>
   <Address>Earth</Address>
 </Student>
@@ -202,11 +202,11 @@ func main() {
 	r.GzipAll().DeflateAll().Charset("utf-8")
 	m := mux.New()
 	m.HandleFunc("/template", func(w http.ResponseWriter, req *http.Request) {
-		r.Execute(w,req,Student{"Mort Huang",18,"Earth"},http.StatusOK)
+		r.Execute(w,req,Student{"Meng Huang",18,"Earth"},http.StatusOK)
 	}).All()
 	m.HandleFunc("/template/:name", func(w http.ResponseWriter, req *http.Request) {
 		params:=m.Params(req)
-		_,err:=r.ExecuteTemplate(w,req,params["name"],Student{"Mort Huang",18,"Earth"},http.StatusOK)
+		_,err:=r.ExecuteTemplate(w,req,params["name"],Student{"Meng Huang",18,"Earth"},http.StatusOK)
 		if err!=nil{
 			r.Text(w,req,fmt.Sprintf("template/%s is not exsited",params["name"]),http.StatusOK)
 		}
@@ -217,13 +217,13 @@ func main() {
 curl -H "Accept-Encoding: gzip,deflate" --compressed http://localhost:8080/template
 ```
 This is a Student Template:
-Name: Mort Huang;
+Name: Meng Huang;
 Age:18;
 Address: Earth.
 ```
 curl -H "Accept-Encoding: gzip,deflate" --compressed http://localhost:8080/template/1
 ```
-<br>Name	-	Mort Huang<br/>
+<br>Name	-	Meng Huang<br/>
 <br>Age		-	18<br/>
 <br>Address	-	Earth<br/>
 ```
@@ -232,7 +232,7 @@ curl -H "Accept-Encoding: gzip,deflate" --compressed http://localhost:8080/templ
 ```
 <html><body>
 <table style='width:100%'>
-	<tr><td align='center'>Name</td><td align='center'>Mort Huang</td><tr>
+	<tr><td align='center'>Name</td><td align='center'>Meng Huang</td><tr>
 	<tr><td align='center'>Age</td><td align='center'>18</td><tr>
 	<tr><td align='center'>Address</td><td align='center'>Earth</td><tr>
 </table>
@@ -240,10 +240,10 @@ curl -H "Accept-Encoding: gzip,deflate" --compressed http://localhost:8080/templ
 ```
 
 ### Licence
-This package is licenced under a MIT licence (Copyright (c) 2019 Mort Huang)
+This package is licenced under a MIT licence (Copyright (c) 2019 Meng Huang)
 
 
 ### Authors
-render was written by Mort Huang.
+render was written by Meng Huang.
 
 
