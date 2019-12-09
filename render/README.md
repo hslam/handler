@@ -17,11 +17,11 @@
 
 ### Install
 ```
-go get hslam.com/git/x/handler
+go get github.com/hslam/handler
 ```
 ### Import
 ```
-import "hslam.com/git/x/handler"
+import "github.com/hslam/handler"
 ```
 ### Usage
 
@@ -32,8 +32,8 @@ package main
 import (
 	"log"
 	"net/http"
-	"hslam.com/git/x/mux"
-	"hslam.com/git/x/handler/render"
+	"github.com/hslam/mux"
+	"github.com/hslam/handler/render"
 )
 func main() {
 	r:=render.NewRender()
@@ -56,8 +56,8 @@ package main
 import (
 	"log"
 	"net/http"
-	"hslam.com/git/x/mux"
-	"hslam.com/git/x/handler/render"
+	"github.com/hslam/mux"
+	"github.com/hslam/handler/render"
 )
 func main() {
 	r:=render.NewRender()
@@ -106,8 +106,8 @@ package main
 import (
 	"log"
 	"net/http"
-	"hslam.com/git/x/mux"
-	"hslam.com/git/x/handler/render"
+	"github.com/hslam/mux"
+	"github.com/hslam/handler/render"
 )
 type Student struct {
 	Name string
@@ -163,8 +163,8 @@ package main
 import (
 	"log"
 	"net/http"
-	"hslam.com/git/x/mux"
-	"hslam.com/git/x/handler/render"
+	"github.com/hslam/mux"
+	"github.com/hslam/handler/render"
 	"fmt"
 )
 type Student struct {

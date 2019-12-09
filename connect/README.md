@@ -4,11 +4,11 @@ Switch protocol from HTTP to TCP connection using CONNECT HTTP method.
 
 ### Install
 ```
-go get hslam.com/git/x/handler
+go get github.com/hslam/handler
 ```
 ### Import
 ```
-import "hslam.com/git/x/handler"
+import "github.com/hslam/handler"
 ```
 ### Usage
 #### Example
@@ -19,8 +19,8 @@ package main
 import (
 	"log"
 	"net/http"
-	"hslam.com/git/x/mux"
-	"hslam.com/git/x/handler/connect"
+	"github.com/hslam/mux"
+	"github.com/hslam/handler/connect"
 	"net"
 	"bufio"
 	"io"
@@ -51,7 +51,7 @@ func ServeConn(conn net.Conn) {
 ```go
 package main
 import (
-	"hslam.com/git/x/handler/connect"
+	"github.com/hslam/handler/connect"
 	"bufio"
 	"io"
 	"fmt"

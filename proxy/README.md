@@ -5,11 +5,11 @@
 
 ### Install
 ```
-go get hslam.com/git/x/handler
+go get github.com/hslam/handler
 ```
 ### Import
 ```
-import "hslam.com/git/x/handler"
+import "github.com/hslam/handler"
 ```
 ### Usage
 #### Example
@@ -18,8 +18,8 @@ package main
 import (
 	"log"
 	"net/http"
-	"hslam.com/git/x/mux"
-	"hslam.com/git/x/handler/proxy"
+	"github.com/hslam/mux"
+	"github.com/hslam/handler/proxy"
 )
 func main() {
 	go func() {

@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"bytes"
 	"sync"
-	"hslam.com/git/x/handler/header"
+	"github.com/hslam/handler/header"
 )
 var bufPool *sync.Pool
 var compressorPool *sync.Pool

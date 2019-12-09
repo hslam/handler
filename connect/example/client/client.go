@@ -1,6 +1,6 @@
 package main
 import (
-	"hslam.com/git/x/handler/connect"
+	"github.com/hslam/handler/connect"
 	"bufio"
 	"io"
 	"fmt"

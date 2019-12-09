@@ -1,24 +1,24 @@
 # handler
-## http middleware/handler for [mux](https://hslam.com/git/x/mux "mux") .
+## http middleware/handler for [mux](https://github.com/hslam/mux "mux") .
 
 ## Features
-* [Render](https://hslam.com/git/x/handler/src/master/render "render")
-* [Gzip/Deflate](https://hslam.com/git/x/handler/src/master/compress "compress")
-* [Proxy](https://hslam.com/git/x/handler/src/master/proxy "proxy")
-* [Conncect](https://hslam.com/git/x/handler/src/master/connect "connect")
-* [Header](https://hslam.com/git/x/handler/src/master/header "header")
-* [Remote IP](https://hslam.com/git/x/handler/src/master/remote "remote")
-* [Referer Host](https://hslam.com/git/x/handler/src/master/referer "referer")
+* [Render](https://github.com/hslam/handler/tree/master/render "render")
+* [Gzip/Deflate](https://github.com/hslam/handler/tree/master/compress "compress")
+* [Proxy](https://github.com/hslam/handler/tree/master/proxy "proxy")
+* [Conncect](https://github.com/hslam/handler/tree/master/connect "connect")
+* [Header](https://github.com/hslam/handler/tree/master/header "header")
+* [Remote IP](https://github.com/hslam/handler/tree/master/remote "remote")
+* [Referer Host](https://github.com/hslam/handler/tree/master/referer "referer")
 
 ## Get started
 
 ### Install
 ```
-go get hslam.com/git/x/handler
+go get github.com/hslam/handler
 ```
 ### Import
 ```
-import "hslam.com/git/x/handler"
+import "github.com/hslam/handler"
 ```
 
 ### Licence

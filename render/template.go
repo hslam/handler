@@ -5,7 +5,7 @@ import (
 	"bytes"
 	"net/http"
 	"html/template"
-	"hslam.com/git/x/handler/header"
+	"github.com/hslam/handler/header"
 	"errors"
 )
 

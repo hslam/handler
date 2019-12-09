@@ -3,7 +3,7 @@ package compress
 import (
 	"compress/gzip"
 	"net/http"
-	"hslam.com/git/x/handler/header"
+	"github.com/hslam/handler/header"
 )
 
 func NewGzipWriter(w http.ResponseWriter, r *http.Request)*Compressor  {

@@ -2,8 +2,8 @@ package main
 import (
 	"log"
 	"net/http"
-	"hslam.com/git/x/mux"
-	"hslam.com/git/x/handler/proxy"
+	"github.com/hslam/mux"
+	"github.com/hslam/handler/proxy"
 )
 func main() {
 	go func() {

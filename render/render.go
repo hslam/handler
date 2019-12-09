@@ -3,9 +3,9 @@ import (
 	"io/ioutil"
 	"net/http"
 	"encoding/json"
-	"hslam.com/git/x/handler/header"
+	"github.com/hslam/handler/header"
 	"encoding/xml"
-	"hslam.com/git/x/handler/compress"
+	"github.com/hslam/handler/compress"
 	"sync"
 )
 
