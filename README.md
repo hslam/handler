@@ -21,8 +21,8 @@ go get github.com/hslam/handler
 import "github.com/hslam/handler"
 ```
 
-### Licence
-This package is licenced under a MIT licence (Copyright (c) 2019 Meng Huang)
+### License
+This package is licensed under a MIT license (Copyright (c) 2019 Meng Huang)
 
 
 ### Authors
