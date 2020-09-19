@@ -1,8 +1,7 @@
 # render
-## mux middleware to enable render support.
+Package render supports rendering for the http.ResponseWriter.
 
 ## Features
-
 * JSON
 * XML
 * Redirect
@@ -29,17 +28,19 @@ import "github.com/hslam/handler"
 #### HelloWorld Example
 ```
 package main
+
 import (
+	"github.com/hslam/handler/render"
+	"github.com/hslam/mux"
 	"log"
 	"net/http"
-	"github.com/hslam/mux"
-	"github.com/hslam/handler/render"
 )
+
 func main() {
-	r:=render.NewRender()
+	r := render.NewRender()
 	m := mux.New()
 	m.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
-		r.Text(w,req,"Hello world",http.StatusOK)
+		r.Text(w, req, "Hello world", http.StatusOK)
 	}).All()
 	log.Fatal(http.ListenAndServe(":8080", m))
 }
@@ -53,12 +54,14 @@ Hello world
 #### Gzip/Deflate Example
 ```
 package main
+
 import (
+	"github.com/hslam/handler/render"
+	"github.com/hslam/mux"
 	"log"
 	"net/http"
-	"github.com/hslam/mux"
-	"github.com/hslam/handler/render"
 )
+
 func main() {
 	r:=render.NewRender()
 	r.GzipAll().DeflateAll().Charset("utf-8")
@@ -103,32 +106,35 @@ Content-Length: 25
 #### Simple Example
 ```
 package main
+
 import (
+	"github.com/hslam/handler/render"
+	"github.com/hslam/mux"
 	"log"
 	"net/http"
-	"github.com/hslam/mux"
-	"github.com/hslam/handler/render"
 )
+
 type Student struct {
-	Name string
-	Age int32
+	Name    string
+	Age     int32
 	Address string
 }
+
 func main() {
-	r:=render.NewRender()
+	r := render.NewRender()
 	r.GzipAll().DeflateAll().Charset("utf-8")
 	m := mux.New()
 	m.HandleFunc("/text", func(w http.ResponseWriter, req *http.Request) {
-		r.Text(w,req,"Hello world",http.StatusOK)
+		r.Text(w, req, "Hello world", http.StatusOK)
 	}).All()
 	m.HandleFunc("/raw", func(w http.ResponseWriter, req *http.Request) {
-		r.Body(w,req,[]byte("raw data"),http.StatusOK)
+		r.Body(w, req, []byte("raw data"), http.StatusOK)
 	}).All()
 	m.HandleFunc("/json", func(w http.ResponseWriter, req *http.Request) {
-		r.JSON(w,req,Student{"Meng Huang",18,"Earth"},http.StatusOK)
+		r.JSON(w, req, Student{"Mort Huang", 18, "Earth"}, http.StatusOK)
 	}).All()
 	m.HandleFunc("/xml", func(w http.ResponseWriter, req *http.Request) {
-		r.XML(w,req,Student{"Meng Huang",18,"Earth"},http.StatusOK)
+		r.XML(w, req, Student{"Mort Huang", 18, "Earth"}, http.StatusOK)
 	}).All()
 	log.Fatal(http.ListenAndServe(":8080", m))
 }
@@ -160,18 +166,21 @@ curl -H "Accept-Encoding: gzip,deflate" --compressed http://localhost:8080/xml?p
 #### Template Example
 ```
 package main
+
 import (
+	"fmt"
+	"github.com/hslam/handler/render"
+	"github.com/hslam/mux"
 	"log"
 	"net/http"
-	"github.com/hslam/mux"
-	"github.com/hslam/handler/render"
-	"fmt"
 )
+
 type Student struct {
-	Name string
-	Age int32
+	Name    string
+	Age     int32
 	Address string
 }
+
 var studentTemplate = `
 This is a Student Template:
 Name: {{.Name}};
@@ -194,21 +203,22 @@ var studentTemplateTwo = `
 </table>
 </body></html>
 `
+
 func main() {
-	r:=render.NewRender()
+	r := render.NewRender()
 	r.Parse(studentTemplate)
-	r.ParseTemplate("1",studentTemplateOne)
-	r.ParseTemplate("2",studentTemplateTwo)
+	r.ParseTemplate("1", studentTemplateOne)
+	r.ParseTemplate("2", studentTemplateTwo)
 	r.GzipAll().DeflateAll().Charset("utf-8")
 	m := mux.New()
 	m.HandleFunc("/template", func(w http.ResponseWriter, req *http.Request) {
-		r.Execute(w,req,Student{"Meng Huang",18,"Earth"},http.StatusOK)
+		r.Execute(w, req, Student{"Mort Huang", 18, "Earth"}, http.StatusOK)
 	}).All()
 	m.HandleFunc("/template/:name", func(w http.ResponseWriter, req *http.Request) {
-		params:=m.Params(req)
-		_,err:=r.ExecuteTemplate(w,req,params["name"],Student{"Meng Huang",18,"Earth"},http.StatusOK)
-		if err!=nil{
-			r.Text(w,req,fmt.Sprintf("template/%s is not exsited",params["name"]),http.StatusOK)
+		params := m.Params(req)
+		_, err := r.ExecuteTemplate(w, req, params["name"], Student{"Mort Huang", 18, "Earth"}, http.StatusOK)
+		if err != nil {
+			r.Text(w, req, fmt.Sprintf("template/%s is not exsited", params["name"]), http.StatusOK)
 		}
 	}).All()
 	log.Fatal(http.ListenAndServe(":8080", m))
@@ -239,8 +249,8 @@ curl -H "Accept-Encoding: gzip,deflate" --compressed http://localhost:8080/templ
 </body></html>
 ```
 
-### Licence
-This package is licenced under a MIT licence (Copyright (c) 2019 Meng Huang)
+### License
+This package is licensed under a MIT license (Copyright (c) 2019 Meng Huang)
 
 
 ### Authors

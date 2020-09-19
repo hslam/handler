@@ -1,9 +1,9 @@
 package remote
 
 import (
-	"net/http"
-	"net"
 	"encoding/binary"
+	"net"
+	"net/http"
 )
 
 const (
@@ -12,15 +12,15 @@ const (
 )
 
 func RemoteAddr(req *http.Request) (addr string) {
-	addr= req.RemoteAddr
+	addr = req.RemoteAddr
 	if ip := req.Header.Get(XRealIP); ip != "" {
 		addr = ip
-	}else if ip = req.Header.Get(XForwardedFor); ip != "" {
+	} else if ip = req.Header.Get(XForwardedFor); ip != "" {
 		addr = ip
-	}else {
+	} else {
 		var err error
-		addr, _,err = net.SplitHostPort(addr)
-		if err!=nil{
+		addr, _, err = net.SplitHostPort(addr)
+		if err != nil {
 			return ""
 		}
 	}

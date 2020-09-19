@@ -1,10 +1,12 @@
 package main
+
 import (
+	"github.com/hslam/handler/proxy"
+	"github.com/hslam/mux"
 	"log"
 	"net/http"
-	"github.com/hslam/mux"
-	"github.com/hslam/handler/proxy"
 )
+
 func main() {
 	go func() {
 		m := mux.New()
@@ -15,7 +17,7 @@ func main() {
 	}()
 	m := mux.New()
 	m.HandleFunc("/proxy", func(w http.ResponseWriter, r *http.Request) {
-		proxy.Proxy(w,r,"http://localhost:8081/hello")
+		proxy.Proxy(w, r, "http://localhost:8081/hello")
 	}).All()
 	log.Fatal(http.ListenAndServe(":8080", m))
 }

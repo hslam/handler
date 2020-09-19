@@ -1,17 +1,17 @@
 package connect
 
 import (
-	"net/http"
-	"net"
-	"io"
 	"bufio"
 	"errors"
+	"io"
+	"net"
+	"net/http"
 	"net/url"
 )
 
 var connected = "200 Connected to Mux"
 
-func GetConn(w http.ResponseWriter, r *http.Request)net.Conn{
+func GetConn(w http.ResponseWriter, r *http.Request) net.Conn {
 	if r.Method != "CONNECT" {
 		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusMethodNotAllowed)
@@ -25,13 +25,15 @@ func GetConn(w http.ResponseWriter, r *http.Request)net.Conn{
 	io.WriteString(conn, "HTTP/1.0 "+connected+"\n\n")
 	return conn
 }
-func DialHTTP(u string)(net.Conn, error) {
-	u_parse,err:=url.Parse(u)
-	if err!=nil{
-		return nil,err
+
+func DialHTTP(u string) (net.Conn, error) {
+	u_parse, err := url.Parse(u)
+	if err != nil {
+		return nil, err
 	}
-	return DialHTTPPath(u_parse.Host,u_parse.Path)
+	return DialHTTPPath(u_parse.Host, u_parse.Path)
 }
+
 func DialHTTPPath(address, path string) (net.Conn, error) {
 	var err error
 	var network = "tcp"

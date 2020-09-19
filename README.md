@@ -1,5 +1,5 @@
 # handler
-## http middleware/handler for [mux](https://github.com/hslam/mux "mux") .
+Package handler implements HTTP middlewares/handlers for [mux](https://github.com/hslam/mux "mux") .
 
 ## Features
 * [Render](https://github.com/hslam/handler/tree/master/render "render")

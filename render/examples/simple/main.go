@@ -1,30 +1,33 @@
 package main
+
 import (
+	"github.com/hslam/handler/render"
+	"github.com/hslam/mux"
 	"log"
 	"net/http"
-	"github.com/hslam/mux"
-	"github.com/hslam/handler/render"
 )
+
 type Student struct {
-	Name string
-	Age int32
+	Name    string
+	Age     int32
 	Address string
 }
+
 func main() {
-	r:=render.NewRender()
+	r := render.NewRender()
 	r.GzipAll().DeflateAll().Charset("utf-8")
 	m := mux.New()
 	m.HandleFunc("/text", func(w http.ResponseWriter, req *http.Request) {
-		r.Text(w,req,"Hello world",http.StatusOK)
+		r.Text(w, req, "Hello world", http.StatusOK)
 	}).All()
 	m.HandleFunc("/raw", func(w http.ResponseWriter, req *http.Request) {
-		r.Body(w,req,[]byte("raw data"),http.StatusOK)
+		r.Body(w, req, []byte("raw data"), http.StatusOK)
 	}).All()
 	m.HandleFunc("/json", func(w http.ResponseWriter, req *http.Request) {
-		r.JSON(w,req,Student{"Mort Huang",18,"Earth"},http.StatusOK)
+		r.JSON(w, req, Student{"Mort Huang", 18, "Earth"}, http.StatusOK)
 	}).All()
 	m.HandleFunc("/xml", func(w http.ResponseWriter, req *http.Request) {
-		r.XML(w,req,Student{"Mort Huang",18,"Earth"},http.StatusOK)
+		r.XML(w, req, Student{"Mort Huang", 18, "Earth"}, http.StatusOK)
 	}).All()
 	log.Fatal(http.ListenAndServe(":8080", m))
 }

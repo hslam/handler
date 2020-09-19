@@ -1,5 +1,5 @@
 # proxy
-## mux middleware to proxy to other server.
+Package proxy routes an HTTP request to target server.
 
 ## Get started
 
@@ -15,12 +15,14 @@ import "github.com/hslam/handler"
 #### Example
 ```
 package main
+
 import (
+	"github.com/hslam/handler/proxy"
+	"github.com/hslam/mux"
 	"log"
 	"net/http"
-	"github.com/hslam/mux"
-	"github.com/hslam/handler/proxy"
 )
+
 func main() {
 	go func() {
 		m := mux.New()
@@ -31,7 +33,7 @@ func main() {
 	}()
 	m := mux.New()
 	m.HandleFunc("/proxy", func(w http.ResponseWriter, r *http.Request) {
-		proxy.Proxy(w,r,"http://localhost:8081/hello")
+		proxy.Proxy(w, r, "http://localhost:8081/hello")
 	}).All()
 	log.Fatal(http.ListenAndServe(":8080", m))
 }
@@ -41,8 +43,8 @@ curl http://localhost:8080/proxy
 hello from 8081
 ```
 
-### Licence
-This package is licenced under a MIT licence (Copyright (c) 2019 Meng Huang)
+### License
+This package is licensed under a MIT license (Copyright (c) 2019 Meng Huang)
 
 
 ### Authors

@@ -1,9 +1,10 @@
 package referer
 
 import (
-	"strings"
 	"net/http"
+	"strings"
 )
+
 func RefererHost(req *http.Request) (addr string) {
 	return ParseHostName(req.Referer())
 }
@@ -16,7 +17,7 @@ func ParseHostName(url string) string {
 	strs := strings.Split(url, "//")
 	if len(strs) == 0 {
 		return ""
-	}else if len(strs) == 1 {
+	} else if len(strs) == 1 {
 		return ""
 	}
 	host_name := strs[1]

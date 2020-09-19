@@ -1,5 +1,5 @@
 # compress
-## mux middleware to enable gzip and deflate support.
+Package compress supports gzip/deflate compressing for the http.ResponseWriter.
 
 ## Features
 
@@ -20,22 +20,25 @@ import "github.com/hslam/handler"
 #### Example
 ```
 package main
+
 import (
+	"github.com/hslam/handler/compress"
+	"github.com/hslam/mux"
 	"log"
 	"net/http"
-	"github.com/hslam/mux"
-	"github.com/hslam/handler/compress"
 )
+
 func main() {
 	m := mux.New()
 	m.HandleFunc("/gzip", func(w http.ResponseWriter, r *http.Request) {
-		compress.Gzip(w,r,[]byte("gzip"),http.StatusOK)
+		compress.Gzip(w, r, []byte("gzip"), http.StatusOK)
 	}).GET().POST().HEAD()
 	m.HandleFunc("/deflate", func(w http.ResponseWriter, r *http.Request) {
-		compress.Deflate(w,r,[]byte("deflate"),http.StatusOK)
+		compress.Deflate(w, r, []byte("deflate"), http.StatusOK)
 	}).GET().POST().HEAD()
 	log.Fatal(http.ListenAndServe(":8080", m))
 }
+
 ```
 curl -H "Accept-Encoding: gzip,deflate" --compressed http://localhost:8080/gzip
 ```
@@ -66,8 +69,8 @@ Date: Sun, 06 Oct 2019 11:43:28 GMT
 Content-Length: 15
 ```
 
-### Licence
-This package is licenced under a MIT licence (Copyright (c) 2019 Meng Huang)
+### License
+This package is licensed under a MIT license (Copyright (c) 2019 Meng Huang)
 
 
 ### Authors

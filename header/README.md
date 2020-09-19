@@ -1,6 +1,5 @@
 # header
-## mux middleware to set header.
-
+Package header sets header for the http.ResponseWriter.
 
 ## Get started
 
@@ -16,16 +15,18 @@ import "github.com/hslam/handler"
 #### Example
 ```
 package main
+
 import (
+	"github.com/hslam/handler/header"
+	"github.com/hslam/mux"
 	"log"
 	"net/http"
-	"github.com/hslam/mux"
-	"github.com/hslam/handler/header"
 )
+
 func main() {
 	m := mux.New()
 	m.Use(func(w http.ResponseWriter, r *http.Request) {
-		header.SetHeader(w,header.AccessControlAllowOrigin, "*")
+		header.SetHeader(w, header.AccessControlAllowOrigin, "*")
 	})
 	m.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Hello World"))
@@ -42,8 +43,8 @@ Content-Length: 11
 Content-Type: text/plain; charset=utf-8
 ```
 
-### Licence
-This package is licenced under a MIT licence (Copyright (c) 2019 Meng Huang)
+### License
+This package is licensed under a MIT license (Copyright (c) 2019 Meng Huang)
 
 
 ### Authors
