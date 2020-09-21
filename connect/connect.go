@@ -11,19 +11,19 @@ import (
 
 var connected = "200 Connected to Mux"
 
-func GetConn(w http.ResponseWriter, r *http.Request) net.Conn {
+func Connect(w http.ResponseWriter, r *http.Request) (net.Conn, error) {
 	if r.Method != "CONNECT" {
 		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		io.WriteString(w, "405 must CONNECT\n")
-		return nil
+		return nil, errors.New("405 must CONNECT")
 	}
 	conn, _, err := w.(http.Hijacker).Hijack()
 	if err != nil {
-		return nil
+		return nil, err
 	}
 	io.WriteString(conn, "HTTP/1.0 "+connected+"\n\n")
-	return conn
+	return conn, nil
 }
 
 func DialHTTP(u string) (net.Conn, error) {

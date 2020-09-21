@@ -14,8 +14,9 @@ import (
 func main() {
 	m := mux.New()
 	m.HandleFunc("/connect", func(w http.ResponseWriter, r *http.Request) {
-		conn := connect.GetConn(w, r)
-		ServeConn(conn)
+		if conn, err := connect.Connect(w, r); err == nil {
+			ServeConn(conn)
+		}
 	}).CONNECT()
 	log.Fatal(http.ListenAndServe(":8080", m))
 }
