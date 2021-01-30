@@ -18,10 +18,6 @@ func init() {
 }
 
 func Proxy(w http.ResponseWriter, r *http.Request, targetUrl string) {
-	defer func() {
-		if err := recover(); err != nil {
-		}
-	}()
 	targetUrlParse, err := url.Parse(targetUrl)
 	if err != nil {
 		panic(err)
