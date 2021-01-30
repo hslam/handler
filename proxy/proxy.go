@@ -6,33 +6,32 @@ import (
 	"net/url"
 )
 
-const MaxConnsPerHost = 65536
+const MaxConnsPerHost = 16384
 
-var http_transport *http.Transport
+var transport *http.Transport
 
 func init() {
-	http_transport = &http.Transport{
+	transport = &http.Transport{
 		Proxy:               http.ProxyFromEnvironment,
 		MaxIdleConnsPerHost: MaxConnsPerHost,
-		MaxConnsPerHost:     MaxConnsPerHost,
 	}
 }
 
-func Proxy(w http.ResponseWriter, r *http.Request, target_url string) {
+func Proxy(w http.ResponseWriter, r *http.Request, targetUrl string) {
 	defer func() {
 		if err := recover(); err != nil {
 		}
 	}()
-	target_url_parse, err := url.Parse(target_url)
+	targetUrlParse, err := url.Parse(targetUrl)
 	if err != nil {
 		panic(err)
 	}
-	target, err := url.Parse("http://" + target_url_parse.Host)
+	target, err := url.Parse("http://" + targetUrlParse.Host)
 	if err != nil {
 		panic(err)
 	}
-	r.URL.Path = target_url_parse.Path
+	r.URL.Path = targetUrlParse.Path
 	proxy := httputil.NewSingleHostReverseProxy(target)
-	proxy.Transport = http_transport
+	proxy.Transport = transport
 	proxy.ServeHTTP(w, r)
 }
