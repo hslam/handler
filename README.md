@@ -1,4 +1,7 @@
 # handler
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/hslam/handler)](https://pkg.go.dev/github.com/hslam/handler)
+[![LICENSE](https://img.shields.io/github/license/hslam/handler.svg?style=flat-square)](https://github.com/hslam/handler/blob/master/LICENSE)
+
 Package handler implements HTTP middlewares/handlers for [mux](https://github.com/hslam/mux "mux") .
 
 ## Features
