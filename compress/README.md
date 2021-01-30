@@ -18,7 +18,7 @@ import "github.com/hslam/handler"
 ```
 ### Usage
 #### Example
-```
+```go
 package main
 
 import (
@@ -73,7 +73,7 @@ Content-Length: 15
 This package is licensed under a MIT license (Copyright (c) 2019 Meng Huang)
 
 
-### Authors
+### Author
 compress was written by Meng Huang.
 
 

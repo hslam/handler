@@ -13,7 +13,7 @@ import "github.com/hslam/handler"
 ```
 ### Usage
 #### Example
-```
+```go
 package main
 
 import (
@@ -47,7 +47,7 @@ hello from 8081
 This package is licensed under a MIT license (Copyright (c) 2019 Meng Huang)
 
 
-### Authors
+### Author
 proxy was written by Meng Huang.
 
 

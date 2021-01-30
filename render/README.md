@@ -26,7 +26,7 @@ import "github.com/hslam/handler"
 
 
 #### HelloWorld Example
-```
+```go
 package main
 
 import (
@@ -52,7 +52,7 @@ Hello world
 
 
 #### Gzip/Deflate Example
-```
+```go
 package main
 
 import (
@@ -104,7 +104,7 @@ Content-Length: 25
 
 
 #### Simple Example
-```
+```go
 package main
 
 import (
@@ -164,7 +164,7 @@ curl -H "Accept-Encoding: gzip,deflate" --compressed http://localhost:8080/xml?p
 ```
 
 #### Template Example
-```
+```go
 package main
 
 import (
@@ -253,7 +253,7 @@ curl -H "Accept-Encoding: gzip,deflate" --compressed http://localhost:8080/templ
 This package is licensed under a MIT license (Copyright (c) 2019 Meng Huang)
 
 
-### Authors
+### Author
 render was written by Meng Huang.
 
 

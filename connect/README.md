@@ -92,7 +92,7 @@ HELLO MUX
 This package is licensed under a MIT license (Copyright (c) 2019 Meng Huang)
 
 
-### Authors
+### Author
 connect was written by Meng Huang.
 
 
